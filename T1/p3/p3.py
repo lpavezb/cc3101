@@ -12,10 +12,17 @@ def sat_2cnf(F):
         p1 = graph.find_path(key, neg(key))
         p2 = graph.find_path(neg(key), key)
         if p1 != None and p2 != None:
-            return False
-    return True
+            return 0
+    return 1
         
-
+def sat_dnf(F):
+    l = F.replace('(', '').replace(')', '').split('o')
+    for c in l:
+        n = c.split('y')
+        for v in n:
+            if neg(v) in n:
+                return 0
+    return 1
 
 def fill_graph(graph, F):
     l = F.replace('(', '').replace(')', '').split('y')
@@ -44,8 +51,14 @@ def neg(v):
 
 if __name__ == '__main__':
     print "-----------------------------------------------------"
-    
-    #print sat_2cnf("(x1ox2)y(-x2ox3)y(-x1o-x2)y(x3ox4)y(-x3ox5)y(-x4o-x5)y(-x3ox4)")
-    print sat_2cnf("(-x1ox5)y(-x5o-x1)y(x2ox4)y(x1ox3)y(-x3ox1)")
+    print "--------------------- test cnf ---------------------\n"
 
-    print "-----------------------------------------------------"
+    print sat_2cnf("(x1ox2)y(-x2ox3)y(-x1o-x2)y(x3ox4)y(-x3ox5)y(-x4o-x5)y(-x3ox4)")
+    #print sat_2cnf("(-x1ox5)y(-x5o-x1)y(x2ox4)y(x1ox3)y(-x3ox1)")
+
+    print "\n-----------------------------------------------------"
+    print "--------------------- test dnf ---------------------\n"
+
+    print sat_dnf("(x1y-x2)o(x2y-x1yx4)o(-x4y-x3yx1)")
+
+    print "\n-----------------------------------------------------"
