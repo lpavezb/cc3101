@@ -49,8 +49,11 @@ def RinterRinv(R):
     res = []
     Rinv = inv(R)
 
+    #inicializar matriz con 0s
     for i in range(0, l):
         res.append(['0' for i in range(0, l)])
+
+    #hacer interseccion
     for i in range(0, l):
         for j in range(0, l):
             if R[i][j] == Rinv[i][j] == '1':
@@ -61,8 +64,11 @@ def RinterRinv(R):
 def inv(R):
     l = len(R)
     res = []
+    #inicializar matriz con 0s
     for i in range(0, l):
         res.append(['0' for i in range(0, l)])
+
+    #construir Rinv
     for i in range(0, l):
         for j in range(0, l):
             if R[i][j] == '1':
@@ -73,7 +79,8 @@ def inv(R):
 ###################### MISC ######################
 
 def stringToMatrix(s):
-    l = s.split("\n")
+    #split no funciona bien con \n cuando se usa raw_input ???
+    l = s.split('\\n')
     m = []
     for i in range(0, len(l)):
         m.append(l[i].split(" "))
@@ -91,13 +98,16 @@ def matrixToString(M):
 
 if __name__ == '__main__':
     print "-----------------------------------------------------"
-    print "--------------------- test p2_a ---------------------\n"
+    print "--------------------- p2_a ---------------------\n"
+    s = raw_input("matriz: ")
 
-    print p2_a("1 0 0\n0 1 0\n0 0 1")
+    print '\nrespuesta: ' + str(p2_a(s))
 
     print "\n-----------------------------------------------------"
-    print "--------------------- test p2_c ---------------------\n"
+    print "--------------------- p2_c ---------------------\n"
 
-    print p2_c("1 1 1\n0 1 1\n0 1 1")
+    #1 1 1\n0 1 1\n0 1 1
+    s = raw_input("matriz: ")
+    print '\nrespuesta:\n' + p2_c(s)
 
     print "-----------------------------------------------------"

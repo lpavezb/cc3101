@@ -51,14 +51,20 @@ def neg(v):
 
 if __name__ == '__main__':
     print "-----------------------------------------------------"
-    print "--------------------- test cnf ---------------------\n"
+    print "--------------------- test 2cnf ---------------------\n"
 
-    print sat_2cnf("(x1ox2)y(-x2ox3)y(-x1o-x2)y(x3ox4)y(-x3ox5)y(-x4o-x5)y(-x3ox4)")
+    s = raw_input("input 2cnf: ")
+    print
+    print sat_2cnf(s)
     #print sat_2cnf("(-x1ox5)y(-x5o-x1)y(x2ox4)y(x1ox3)y(-x3ox1)")
+    #print sat_2cnf("(x1ox2)y(-x2ox3)y(-x1o-x2)y(x3ox4)y(-x3ox5)y(-x4o-x5)y(-x3ox4)")
 
     print "\n-----------------------------------------------------"
-    print "--------------------- test dnf ---------------------\n"
+    print "--------------------- test dnf  ---------------------\n"
 
-    print sat_dnf("(x1y-x2)o(x2y-x1yx4)o(-x4y-x3yx1)")
+    s = raw_input("input dnf: ")
+    print
+    print sat_dnf(s)
+    #print sat_dnf("(x1y-x2)o(x2y-x1yx4)o(-x4y-x3yx1)")
 
     print "\n-----------------------------------------------------"

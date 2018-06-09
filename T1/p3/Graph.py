@@ -83,34 +83,3 @@ class Graph:
                 newpath = self.find_path(node, end, path)
                 if newpath: return newpath
         return None
-
-    def find_all_paths(self, start, end, path=[]):
-        path = path + [start]
-        if start == end:
-            return [path]
-        if not self.graph.has_key(start):
-            return []
-        paths = []
-        for node in self.graph[start]:
-            if node not in path:
-                newpaths = self.find_all_paths(node, end, path)
-                for newpath in newpaths:
-                    paths.append(newpath)
-        return paths
-
-# graph = Graph()
-# graph.add_vertex('A')
-# graph.add_vertex('B')
-# graph.add_vertex('C')
-# graph.add_vertex('D')
-# graph.add_vertex('E')
-# graph.add_vertex('F')
-# graph.add_edge('A', 'B')
-# graph.add_edge('A', 'C')
-# graph.add_edge('B', 'C')
-# graph.add_edge('B', 'D')
-# graph.add_edge('C', 'D')
-# graph.add_edge('D', 'C')
-# graph.add_edge('E', 'F')
-# graph.add_edge('F', 'C')
-# print graph.find_all_paths('A','D')

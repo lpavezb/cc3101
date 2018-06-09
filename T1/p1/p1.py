@@ -2,33 +2,34 @@
 
 def p1(s):
     letters = "qwertyuiopasdfghjklzxcvbnm"
+    const = "a"
     var   = "b"
+    par   = "c"
     su    = "d"
     mult  = "e"
 
     res = ""
 
-
-    res += countBrackets(s)
-    if res == "NO\n":
-        return res
-
-    if not aritSum(s) or not aritMult(s):
+    if not arit(s):
         return "NO\n"
 
-    res += countConsts(s)
+    pars = countBrackets(s)
+    if pars == "NO\n":
+        return pars
 
-    res += su*s.count("+")
-    res += mult*s.count("*")
+    res += par*pars # agrega parentesis
+    res += const*countConsts(s) # agrega constantes
+    res += su*s.count("+") # agrega sumas
+    res += mult*s.count("*") # agrega multiplicaciones
 
-    for a in s:
+    for a in s: # agrega variables, suponiendo que cada variable esta compuesta por una letra
         if a in letters:
             res += var
 
-    res = ''.join(sorted(res))
+    res = ''.join(sorted(res)) # ordena respuesta final alfabeticamente
     return res
 
-def aritSum(s):
+def arit(s):
     letters = "qwertyuiopasdfghjklzxcvbnm"
     num = "1234567890"
     l = s.split("+")
@@ -42,28 +43,22 @@ def aritSum(s):
             if a in letters or a in num:
                 c = True
         b = b and c
-    return b
 
-def aritMult(s):
-    letters = "qwertyuiopasdfghjklzxcvbnm"
-    num = "1234567890"
     l = s.split("*")
     if '' in l:
         return False
-    b = True
+    d = True
     for st in l:
         c = False
         if st[0] == '+' or st[len(st) - 1] == '+': return False
         for a in st:
             if a in letters or a in num:
                 c = True
-        b = b and c
-    return b
+        d = d and c
+    return b and d
 
 def countConsts(s):
-    const = "a"
     num = "1234567890"
-    res = ""
 
     n = 0
     i = 0
@@ -77,13 +72,9 @@ def countConsts(s):
             except Exception as e:
                 pass
         i += 1
-    res += const*n
-    return res
+    return n
 
 def countBrackets(s):
-    par   = "c"
-    res = ""
-
     pars = 0
     for a in s:
         if a == "(":
@@ -93,22 +84,23 @@ def countBrackets(s):
         if pars < 0:
             return "NO\n"
     if pars == 0:
-        res += par*s.count("(")
+        return s.count("(")
     else:
         return "NO\n"
-    return res
 
 
-def test():
-    file_in  = open("Arit_In.txt","r")
-    file_out = open("Arit_Out.txt","r")
+def test(In, Out):
+    file_in  = open(In,"r")
+    file_out = open(Out,"r")
+
     f = 0
     for line in file_out:
         line_in = file_in.readline() 
 
         if line == "NO\n":
             res = "NO\n"
-        else:
+        else: 
+            # ordena alfabeticamente 
             res = line.replace(",","").replace("\n","")
             res = ''.join(sorted(res))
 
@@ -116,15 +108,19 @@ def test():
         if not bol:
             print line_in
             f+=1
-        print bol
+    print "Errores: " + str(f)
 
-    print f
+
+
+
 
 if __name__ == '__main__':
+
+    s = "(90*r+b+(l*y)*95)*j*b*((g*51)+x)+29+g"
+
     print "----------------------------------------------------"
 
-    test()
+    print p1(s)
+    #test("Arit_In.txt", "Arit_Out.txt")
     
     print "----------------------------------------------------"
-
-    
