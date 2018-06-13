@@ -115,12 +115,18 @@ def test(In, Out):
 
 
 if __name__ == '__main__':
-
-    s = "(90*r+b+(l*y)*95)*j*b*((g*51)+x)+29+g"
-
-    print "----------------------------------------------------"
-
-    print p1(s)
-    #test("Arit_In.txt", "Arit_Out.txt")
+    print "-------------------------------------------------------------------------"
+    b = input("probar con un string / probar con archivos con input-outputs [0/1]: ")
+    print "-------------------------------------------------------------------------"
+    if b==0:
+        #s = "(90*r+b+(l*y)*95)*j*b*((g*51)+x)+29+g"
+        s = raw_input("ingrese string: ")
+        print "-------------------------------------------------------------------------"
+        print p1(s)
+    else:
+        In = raw_input("ingrese nombre de archivo con inputs (ej: Arit_In.txt): ")
+        Out = raw_input("ingrese nombre de archivo con outputs (ej: Arit_Out.txt): ")
+        print "-------------------------------------------------------------------------"
+        test(In, Out)
     
-    print "----------------------------------------------------"
+    print "-------------------------------------------------------------------------"
