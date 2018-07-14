@@ -3,8 +3,8 @@
 def neg(s):
     return 's' if (s == 'c') else 'c'
 
-# So for the first player's choice of 1-2-3
-# the second player must choose (not-2)-1-2 
+# If the first player choice is s[0]-s[1]-s[2]
+# the second player must choose (not-s[1])-s[0]-s[1] 
 def p2(s):
     return neg(s[1]) + s[0] + s[1]
 
