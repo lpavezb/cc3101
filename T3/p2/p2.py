@@ -26,25 +26,25 @@ class Tarea:
         root = self.get_root()
         self.pintar(root, 'a')
 
-        v1 = []
-        v2 = []
+        va = []
+        vr = []
         # como el arbol es bipartito, separo los nodos por color en 2 listas
         for v in self.g.get_vertexs():
             if self.colors[v] == 'a':
-                v1.append(v)
+                va.append(v)
             else:
-                v2.append(v)
+                vr.append(v)
 
         # convertir el grafo dirigido a grafo simple
         for v in self.g.get_vertexs():
             for e in self.g.get_edge(v):
                 self.g.add_edge(e, v)
 
-        # reviso las conexiones que faltan entre v1 y v2
+        # reviso las conexiones que faltan entre va y vr
         aristas = 0
-        for v in v1:
+        for v in va:
             e = self.g.get_edge(v)
-            for ver in v2:
+            for ver in vr:
                 if ver not in e:
                     aristas += 1
         return aristas
