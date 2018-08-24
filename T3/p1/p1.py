@@ -10,11 +10,12 @@ def do_tarea(m, k, par):
 def pow(m, k):
     if k == 1:
         return m
+    tmp = pow(m, k/2)
+    res = tmp.dot(tmp)
     if k % 2 == 0:
-        tmp = pow(m, k/2)
-        return tmp.dot(tmp)
+        return res
     else:
-        return pow(m, k-1).dot(m)
+        return res.dot(m)
 
 
 def string_to_matrix(s, n):
